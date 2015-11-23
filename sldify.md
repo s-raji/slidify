@@ -1,0 +1,83 @@
+---
+title       : Measures of Central Tendency
+subtitle    : The mean, median and mode
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [bootstrap, quiz]# {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## The Measures of Central Tendency
+
+In statistics, a central tendency (or, more commonly, a measure of central tendency) is a central or typical value for a probability distribution.[1] It may also be called a center or location of the distribution. Colloquially, measures of central tendency are often called averages. The term central tendency dates from the late 1920s.
+
+
+The most common measures of central tendency are - the mean, the median and the mode.
+
+The arithmetic mean (or simply "mean") of a sample x1, x2, x3...xn, is the sum of the sampled values divided by the number of items n in the sample. 
+  Mean = (x1 + x2 + x3 + .... + xn)/n
+  
+In statistics and probability theory, a median is the number separating the higher half of a data sample, a population, or a probability distribution, from the lower half. The median of a finite list of numbers can be found by arranging all the observations from lowest value to highest value and picking the middle one. If there is an even number of observations, then there is no single middle value; the median is then usually defined to be the mean of the two middle values.
+
+
+The mode is the value that appears most often in a set of data.
+
+---.class #id 
+
+In this project where we have created a shiny application, We are trying to input 5 positive numbers and we are trying to calculate the mean and median. ui.R code-
+
+```r
+shinyUI(
+  pageWithSidebar(
+    headerPanel("Measures of Central Tendency of five numbers"),
+    sidebarPanel(
+      numericInput('N1', 'Enter a positive number', 0, min = 0, step = 1),
+      numericInput('N2', 'Enter a positive number', 0, min = 0, step = 1),
+      numericInput('N3', 'Enter a positive number', 0, min = 0, step = 1),
+      numericInput('N4', 'Enter a positive number', 0, min = 0, step = 1),
+      numericInput('N5', 'Enter a positive number', 0, min = 0, step = 1),
+      submitButton('Submit')
+    ),
+    mainPanel(
+      h3('Caluclated Measures of Central Tendency'),
+      h4('The Mean of the given 5 numbers'),
+      verbatimTextOutput("Mean"),
+      h4('The Median of the given 5 numbers'),
+      verbatimTextOutput("Median")
+    ) ))
+```
+
+---
+
+The server.R code-
+
+
+```r
+shinyServer(
+
+  function(input, output){
+  
+    output$Mean <- renderPrint({mean(c(input$N1,input$N2, input$N3, input$N4, input$N5))})
+    output$Median <- renderPrint({median(c(input$N1,input$N2, input$N3, input$N4, input$N5))})
+
+  }
+)
+```
+
+--- &radio
+## Mode
+
+The mode is the most frequently appearing number. 
+
+In the following sample of 5 observations, identify the mode-
+
+x = {34, 56, 56, 105, 56}
+
+1. 37
+2. _56_
+3. 105
+
+*** .hint
+It appears three times in the sample

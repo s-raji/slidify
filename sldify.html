@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Measures of Central Tendency</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Measures of Central Tendency">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Measures of Central Tendency</h1>
+    <h2>The mean, median and mode</h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>The Measures of Central Tendency</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In statistics, a central tendency (or, more commonly, a measure of central tendency) is a central or typical value for a probability distribution.[1] It may also be called a center or location of the distribution. Colloquially, measures of central tendency are often called averages. The term central tendency dates from the late 1920s.</p>
+
+<p>The most common measures of central tendency are - the mean, the median and the mode.</p>
+
+<p>The arithmetic mean (or simply &quot;mean&quot;) of a sample x1, x2, x3...xn, is the sum of the sampled values divided by the number of items n in the sample. 
+  Mean = (x1 + x2 + x3 + .... + xn)/n</p>
+
+<p>In statistics and probability theory, a median is the number separating the higher half of a data sample, a population, or a probability distribution, from the lower half. The median of a finite list of numbers can be found by arranging all the observations from lowest value to highest value and picking the middle one. If there is an even number of observations, then there is no single middle value; the median is then usually defined to be the mean of the two middle values.</p>
+
+<p>The mode is the value that appears most often in a set of data.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <p>In this project where we have created a shiny application, We are trying to input 5 positive numbers and we are trying to calculate the mean and median. ui.R code-</p>
+
+<pre><code class="r">shinyUI(
+  pageWithSidebar(
+    headerPanel(&quot;Measures of Central Tendency of five numbers&quot;),
+    sidebarPanel(
+      numericInput(&#39;N1&#39;, &#39;Enter a positive number&#39;, 0, min = 0, step = 1),
+      numericInput(&#39;N2&#39;, &#39;Enter a positive number&#39;, 0, min = 0, step = 1),
+      numericInput(&#39;N3&#39;, &#39;Enter a positive number&#39;, 0, min = 0, step = 1),
+      numericInput(&#39;N4&#39;, &#39;Enter a positive number&#39;, 0, min = 0, step = 1),
+      numericInput(&#39;N5&#39;, &#39;Enter a positive number&#39;, 0, min = 0, step = 1),
+      submitButton(&#39;Submit&#39;)
+    ),
+    mainPanel(
+      h3(&#39;Caluclated Measures of Central Tendency&#39;),
+      h4(&#39;The Mean of the given 5 numbers&#39;),
+      verbatimTextOutput(&quot;Mean&quot;),
+      h4(&#39;The Median of the given 5 numbers&#39;),
+      verbatimTextOutput(&quot;Median&quot;)
+    ) ))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <article data-timings="">
+    <p>The server.R code-</p>
+
+<pre><code class="r">shinyServer(
+
+  function(input, output){
+
+    output$Mean &lt;- renderPrint({mean(c(input$N1,input$N2, input$N3, input$N4, input$N5))})
+    output$Median &lt;- renderPrint({median(c(input$N1,input$N2, input$N3, input$N4, input$N5))})
+
+  }
+)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Mode</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>The mode is the most frequently appearing number. </p>
+
+<p>In the following sample of 5 observations, identify the mode-</p>
+
+<p>x = {34, 56, 56, 105, 56}</p>
+
+<ol>
+<li>37</li>
+<li><em>56</em></li>
+<li>105</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>It appears three times in the sample</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='The Measures of Central Tendency'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Mode'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
